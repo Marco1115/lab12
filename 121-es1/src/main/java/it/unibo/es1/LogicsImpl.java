@@ -1,5 +1,7 @@
 package it.unibo.es1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ public class LogicsImpl implements Logics {
 
     private static final String ERROR_MESSAGE = "Unimplemented method";
 
-    private final int[] values;
+    private final List<Integer> values;
 
     /**
      * Constructor.
@@ -17,7 +19,7 @@ public class LogicsImpl implements Logics {
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        this.values = new int[size];
+        this.values = Arrays.asList(new Integer[size]);
     }
 
     /**
@@ -25,7 +27,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int size() {
-        return this.values.length;
+        return this.values.size();
     }
 
     /**
@@ -33,7 +35,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Integer> values() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        return this.values;
     }
 
     /**
