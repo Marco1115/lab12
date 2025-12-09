@@ -9,7 +9,7 @@ public class LogicsImpl implements Logics {
 
     private static final String ERROR_MESSAGE = "Unimplemented method";
 
-    private final int size;
+    private final int[] values;
 
     /**
      * Constructor.
@@ -17,7 +17,7 @@ public class LogicsImpl implements Logics {
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        this.size = size;
+        this.values = new int[size];
     }
 
     /**
@@ -25,7 +25,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int size() {
-        return this.size;
+        return this.values.length;
     }
 
     /**
