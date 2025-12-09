@@ -1,8 +1,8 @@
 package it.unibo.es1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of the Logics interface.
@@ -43,7 +43,9 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Boolean> enabledStates() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        return this.values().stream()
+                .map(v -> v < this.size())
+                .collect(Collectors.toList());
     }
 
     /**
