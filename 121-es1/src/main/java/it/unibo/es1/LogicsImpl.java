@@ -53,7 +53,12 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int hit(final int elem) {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        if (elem < 0 || elem >= this.size()) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+        final int newValue = this.values().get(elem) + 1;
+        this.values().set(elem, newValue);
+        return newValue;
     }
 
     /**
