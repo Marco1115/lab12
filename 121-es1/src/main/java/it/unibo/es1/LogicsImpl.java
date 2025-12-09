@@ -1,6 +1,7 @@
 package it.unibo.es1;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,8 +9,6 @@ import java.util.stream.Collectors;
  * Implementation of the Logics interface.
  */
 public class LogicsImpl implements Logics {
-
-    private static final String ERROR_MESSAGE = "Unimplemented method";
 
     private final List<Integer> values;
 
@@ -19,7 +18,10 @@ public class LogicsImpl implements Logics {
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        this.values = Arrays.asList(new Integer[size]);
+        this.values = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            this.values.add(0);
+        }
     }
 
     /**
@@ -35,7 +37,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Integer> values() {
-        return this.values;
+        return Collections.unmodifiableList(this.values);
     }
 
     /**
@@ -57,7 +59,7 @@ public class LogicsImpl implements Logics {
             throw new IllegalArgumentException("Invalid index");
         }
         final int newValue = this.values().get(elem) + 1;
-        this.values().set(elem, newValue);
+        this.values.set(elem, newValue);
         return newValue;
     }
 
@@ -77,6 +79,9 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public boolean toQuit() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        final long distinctElems = this.values().stream()
+                .distinct()
+                .count();
+        return distinctElems == 1;
     }
 }
