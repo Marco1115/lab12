@@ -9,13 +9,15 @@ public class LogicsImpl implements Logics {
 
     private static final String ERROR_MESSAGE = "Unimplemented method";
 
+    private final int size;
+
     /**
      * Constructor.
      *
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        this.size = size;
     }
 
     /**
