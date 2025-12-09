@@ -66,7 +66,10 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public String result() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        final String res = this.values().stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining("|"));
+        return "<<" + res + ">>";
     }
 
     /**
