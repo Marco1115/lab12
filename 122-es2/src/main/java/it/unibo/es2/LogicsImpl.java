@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class LogicsImpl implements Logics {
 
-    final Map<Pair<Integer, Integer>, Boolean> status;
+    private final Map<Pair<Integer, Integer>, Boolean> status;
 
     /**
      * Constructor of the logics.
