@@ -11,4 +11,9 @@ public interface Logics {
      */
     boolean hit(Pair<Integer, Integer> position);
 
+    /**
+     * @return true if it's time to quit. 
+     */
+    boolean toQuit();
+
 }
