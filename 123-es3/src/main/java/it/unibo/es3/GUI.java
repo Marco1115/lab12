@@ -41,7 +41,7 @@ public final class GUI extends JFrame {
         // Create buttons and add them to the panel
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < width; j++) {
-                final var pos = new Pair<>(j, i);
+                final var pos = new Pair<>(i, j);
                 final JButton button = new JButton(" ");
                 this.cells.put(pos, button);
                 innerPanel.add(button);
@@ -54,6 +54,9 @@ public final class GUI extends JFrame {
         advance.addActionListener(e -> {
             for (final var pos: logics.advance()) {
                 cells.get(pos).setText("*");
+            }
+            if (logics.toQuit()) {
+                dispose();
             }
         });
         pack();

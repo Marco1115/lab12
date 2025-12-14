@@ -14,6 +14,16 @@ public interface Logics {
      */
     List<Pair<Integer, Integer>> initialiseCells();
 
+    /**
+     * Activates all the neighboring cells of an active cell.
+     * 
+     * @return a list containing all the newly activated cells
+     */
     List<Pair<Integer, Integer>> advance();
+
+    /**
+     * @return true if it's time to quit.
+     */
+    boolean toQuit();
 
 }

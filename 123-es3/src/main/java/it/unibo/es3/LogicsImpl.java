@@ -1,5 +1,7 @@
 package it.unibo.es3;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +9,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * 
  */
-public class LogicsImpl implements Logics {
+public class LogicsImpl implements Logics, Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     private final int size;
     private final Map<Pair<Integer, Integer>, Boolean> board;
 
@@ -33,6 +39,10 @@ public class LogicsImpl implements Logics {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(
+        value = "DMI_RANDOM_USED_ONLY_ONCE",
+        justification = "False positive: random object used multiple times"
+    )
     @Override
     public List<Pair<Integer, Integer>> initialiseCells() {
         final List<Pair<Integer, Integer>> activated = new ArrayList<>();
@@ -45,6 +55,9 @@ public class LogicsImpl implements Logics {
         return activated;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Pair<Integer, Integer>> advance() {
         final List<Pair<Integer, Integer>> neighborsList = this.board.entrySet().stream()
@@ -66,6 +79,14 @@ public class LogicsImpl implements Logics {
             }
         }
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean toQuit() {
+        return this.board.entrySet().stream().filter(Entry::getValue).count() == (long) size * size; 
     }
 
 }
